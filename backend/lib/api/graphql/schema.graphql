@@ -1,0 +1,14 @@
+type Query {
+	stub: String
+}
+
+type Mutation {
+	sendMessage(msg: String): String! @aws_cognito_user_pools
+	publish(body: String!): String! @aws_iam
+}
+
+type Subscription {
+	onPublish: String
+		@aws_subscribe(mutations: ["publish"])
+		@aws_cognito_user_pools
+}
