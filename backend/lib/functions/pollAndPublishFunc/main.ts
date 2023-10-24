@@ -18,10 +18,7 @@ type RecordsObject = {
 exports.handler = async (event: RecordsObject) => {
 	for (let record of event.Records) {
 		const parsedBody = JSON.parse(record.body) as ParsedBody
-		console.log(`preEndpoint`, parsedBody.appsyncUrl)
 		const endpoint = new URL(parsedBody.appsyncUrl)
-		console.log(`Endpoint processed:`, endpoint)
-
 		const signer = new SignatureV4({
 			credentials: defaultProvider(),
 			region: process.env.REGION || 'us-east-1',
@@ -43,9 +40,7 @@ exports.handler = async (event: RecordsObject) => {
 			path: endpoint.pathname,
 		})
 
-		console.log('the pre-signed request', requestToBeSigned)
 		const signed = await signer.sign(requestToBeSigned)
-		console.log(`Signed Request: ${JSON.stringify(signed)}`)
 
 		//* Long running task goes here
 		await new Promise((resolve) => setTimeout(resolve, 10000)) // waits for 10 seconds
