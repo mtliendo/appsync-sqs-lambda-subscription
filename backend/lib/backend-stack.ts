@@ -40,5 +40,16 @@ export class BackendStack extends cdk.Stack {
 				resources: [`${appsyncArn}/types/Mutation/fields/publish`],
 			})
 		)
+
+		//* Log outputs needed for frontend
+		new cdk.CfnOutput(this, 'UserpoolId', {
+			value: auth.userPool.userPoolId,
+		})
+		new cdk.CfnOutput(this, 'IdentityPoolId', {
+			value: auth.identityPool.identityPoolId,
+		})
+		new cdk.CfnOutput(this, 'WebClientId', {
+			value: auth.userPoolClient.userPoolClientId,
+		})
 	}
 }

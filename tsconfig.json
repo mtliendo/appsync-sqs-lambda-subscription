@@ -17,6 +17,11 @@
 			"@/*": ["./*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-	"exclude": ["node_modules", "backend"]
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"backend/lib/api/graphql/src"
+	],
+	"exclude": ["node_modules"]
 }
