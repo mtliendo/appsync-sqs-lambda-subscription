@@ -1,7 +1,4 @@
 export function request(ctx) {
-	console.log('the context', ctx)
-	console.log('the stash', ctx.stash)
-	console.log('the stash appsyncurl', ctx.stash.appsyncUrl)
 	return {
 		resourcePath: `/${ctx.stash.account}/${ctx.stash.queueName}`,
 		method: 'POST',
